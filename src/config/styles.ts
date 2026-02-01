@@ -18,7 +18,18 @@ export const radiusDescriptions: Record<string, string> = {
   large: 'Large border radius',
 }
 
-export const baseColors = ['neutral', 'stone', 'zinc', 'gray'] as const
+export const baseColors = ['neutral', 'stone', 'zinc', 'gray', 'slate', 'dove', 'taupe', 'copper'] as const
+
+export const baseColorDescriptions: Record<string, string> = {
+  neutral: 'Pure neutral gray',
+  stone: 'Warm stone gray',
+  zinc: 'Cool zinc gray',
+  gray: 'Standard gray',
+  slate: 'Cool slate gray',
+  dove: 'Soft dove gray',
+  taupe: 'Warm taupe',
+  copper: 'Warm copper tone',
+}
 
 export const accentColors = [
   'gray',

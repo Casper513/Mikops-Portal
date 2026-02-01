@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { fonts } from '@/config/fonts'
-import { styles, radii, baseColors, accentColors, styleDescriptions, radiusDescriptions } from '@/config/styles'
+import { styles, radii, baseColors, accentColors, styleDescriptions, radiusDescriptions, baseColorDescriptions } from '@/config/styles'
 import { showSubmittedData } from '@/lib/show-submitted-data'
 import { cn } from '@/lib/utils'
 import { useFont } from '@/context/font-provider'
@@ -248,15 +248,24 @@ export function AppearanceForm() {
                 <SelectContent>
                   {baseColors.map((color) => (
                     <SelectItem key={color} value={color}>
-                      <div className='flex items-center gap-2'>
-                        <div className={cn(
-                          'w-3 h-3 rounded-full',
-                          color === 'neutral' && 'bg-gray-400',
-                          color === 'stone' && 'bg-stone-400',
-                          color === 'zinc' && 'bg-zinc-400',
-                          color === 'gray' && 'bg-gray-500',
-                        )} />
-                        <span className='capitalize'>{color}</span>
+                      <div className='flex flex-col gap-1'>
+                        <div className='flex items-center gap-2'>
+                          <div className={cn(
+                            'w-3 h-3 rounded-full',
+                            color === 'neutral' && 'bg-slate-500',
+                            color === 'stone' && 'bg-stone-500',
+                            color === 'zinc' && 'bg-zinc-500',
+                            color === 'gray' && 'bg-gray-500',
+                            color === 'slate' && 'bg-slate-600',
+                            color === 'dove' && 'bg-slate-400',
+                            color === 'taupe' && 'bg-amber-700',
+                            color === 'copper' && 'bg-amber-600',
+                          )} />
+                          <span className='capitalize font-medium'>{color}</span>
+                        </div>
+                        <span className='text-xs text-muted-foreground ml-5'>
+                          {baseColorDescriptions[color] || ''}
+                        </span>
                       </div>
                     </SelectItem>
                   ))}

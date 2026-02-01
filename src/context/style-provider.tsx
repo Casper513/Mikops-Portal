@@ -53,6 +53,7 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
       : 'fuchsia'
   })
 
+  // Apply styles on mount and when they change
   useEffect(() => {
     const root = document.documentElement
     

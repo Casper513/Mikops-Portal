@@ -1,117 +1,137 @@
 /* Base Color Schemes - defines the primary color palette */
-.base-neutral:root {
+:root.base-neutral {
   --primary: oklch(0.208 0.042 265.755);
   --primary-foreground: oklch(0.984 0.003 247.858);
 }
 
-.base-stone:root {
+:root.base-stone {
   --primary: oklch(0.345 0.024 260);
   --primary-foreground: oklch(0.984 0.003 247.858);
 }
 
-.base-zinc:root {
+:root.base-zinc {
   --primary: oklch(0.334 0.031 260.902);
   --primary-foreground: oklch(0.984 0.003 247.858);
 }
 
-.base-gray:root {
+:root.base-gray {
   --primary: oklch(0.376 0.034 258.338);
   --primary-foreground: oklch(0.984 0.003 247.858);
 }
 
+:root.base-slate {
+  --primary: oklch(0.367 0.033 258.698);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+:root.base-dove {
+  --primary: oklch(0.369 0.026 259.124);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+:root.base-taupe {
+  --primary: oklch(0.364 0.028 257.854);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+:root.base-copper {
+  --primary: oklch(0.372 0.038 258.156);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
 /* Accent Color Schemes - defines the accent/brand colors */
-.accent-gray:root {
+:root.accent-gray {
   --accent: oklch(0.385 0.033 259.696);
   --accent-foreground: oklch(0.984 0.003 247.858);
 }
 
-.accent-amber:root {
+:root.accent-amber {
   --accent: oklch(0.772 0.196 85.995);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-blue:root {
+:root.accent-blue {
   --accent: oklch(0.54 0.218 265.755);
   --accent-foreground: oklch(0.984 0.003 247.858);
 }
 
-.accent-cyan:root {
+:root.accent-cyan {
   --accent: oklch(0.572 0.241 214.216);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-emerald:root {
+:root.accent-emerald {
   --accent: oklch(0.627 0.194 154.363);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-fuchsia:root {
+:root.accent-fuchsia {
   --accent: oklch(0.667 0.275 308.949);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-green:root {
+:root.accent-green {
   --accent: oklch(0.664 0.259 131.684);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-indigo:root {
+:root.accent-indigo {
   --accent: oklch(0.545 0.22 283.011);
   --accent-foreground: oklch(0.984 0.003 247.858);
 }
 
-.accent-lime:root {
+:root.accent-lime {
   --accent: oklch(0.787 0.202 110.612);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-orange:root {
+:root.accent-orange {
   --accent: oklch(0.696 0.228 41.116);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-pink:root {
+:root.accent-pink {
   --accent: oklch(0.688 0.248 348.514);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-purple:root {
+:root.accent-purple {
   --accent: oklch(0.613 0.282 293.756);
   --accent-foreground: oklch(0.984 0.003 247.858);
 }
 
-.accent-red:root {
+:root.accent-red {
   --accent: oklch(0.637 0.237 25.331);
   --accent-foreground: oklch(0.984 0.003 247.858);
 }
 
-.accent-rose:root {
+:root.accent-rose {
   --accent: oklch(0.677 0.222 16.439);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-sky:root {
+:root.accent-sky {
   --accent: oklch(0.687 0.201 230.604);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-teal:root {
+:root.accent-teal {
   --accent: oklch(0.626 0.216 188.304);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
-.accent-violet:root {
+:root.accent-violet {
   --accent: oklch(0.593 0.283 300.92);
   --accent-foreground: oklch(0.984 0.003 247.858);
 }
 
-.accent-yellow:root {
+:root.accent-yellow {
   --accent: oklch(0.84 0.204 94.870);
   --accent-foreground: oklch(0.129 0.042 264.695);
 }
 
 /* Style Spacing & Sizing Configs */
-.style-vega:root {
+:root.style-vega {
   --radius: 0.5rem;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -119,7 +139,7 @@
   --spacing-lg: 1.5rem;
 }
 
-.style-nova:root {
+:root.style-nova {
   --radius: 0.375rem;
   --spacing-xs: 0.125rem;
   --spacing-sm: 0.375rem;
@@ -127,7 +147,7 @@
   --spacing-lg: 1.125rem;
 }
 
-.style-maia:root {
+:root.style-maia {
   --radius: 0.75rem;
   --spacing-xs: 0.375rem;
   --spacing-sm: 0.625rem;
@@ -135,7 +155,7 @@
   --spacing-lg: 1.875rem;
 }
 
-.style-lyra:root {
+:root.style-lyra {
   --radius: 0.25rem;
   --spacing-xs: 0.125rem;
   --spacing-sm: 0.375rem;
@@ -143,7 +163,7 @@
   --spacing-lg: 1rem;
 }
 
-.style-mira:root {
+:root.style-mira {
   --radius: 0.5rem;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -152,24 +172,59 @@
 }
 
 /* Border Radius Overrides */
-.radius-none:root {
+:root.radius-none {
   --radius: 0;
 }
 
-.radius-small:root {
+:root.radius-small {
   --radius: 0.375rem;
 }
 
-.radius-medium:root {
+:root.radius-medium {
   --radius: 0.625rem;
 }
 
-.radius-large:root {
+:root.radius-large {
   --radius: 0.875rem;
 }
 
-/* Update sidebar colors based on accent */
-:root {
+/* Ensure sidebar colors update with appearance changes */
+:root,
+:root.style-vega,
+:root.style-nova,
+:root.style-maia,
+:root.style-lyra,
+:root.style-mira,
+:root.radius-none,
+:root.radius-small,
+:root.radius-medium,
+:root.radius-large,
+:root.base-neutral,
+:root.base-stone,
+:root.base-zinc,
+:root.base-gray,
+:root.base-slate,
+:root.base-dove,
+:root.base-taupe,
+:root.base-copper,
+:root.accent-gray,
+:root.accent-amber,
+:root.accent-blue,
+:root.accent-cyan,
+:root.accent-emerald,
+:root.accent-fuchsia,
+:root.accent-green,
+:root.accent-indigo,
+:root.accent-lime,
+:root.accent-orange,
+:root.accent-pink,
+:root.accent-purple,
+:root.accent-red,
+:root.accent-rose,
+:root.accent-sky,
+:root.accent-teal,
+:root.accent-violet,
+:root.accent-yellow {
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
   --sidebar-accent: var(--accent);
