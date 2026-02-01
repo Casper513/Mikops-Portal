@@ -21,6 +21,9 @@ import {
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
+  Activity,
+  CreditCard,
+  CheckCircle2,
 } from 'lucide-react'
 import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
@@ -33,9 +36,9 @@ export const sidebarData: SidebarData = {
   },
   teams: [
     {
-      name: 'Shadcn Admin',
+      name: 'Mikops Portal',
       logo: Command,
-      plan: 'Vite + ShadcnUI',
+      plan: 'Customer Portal',
     },
     {
       name: 'Acme Inc',
@@ -49,6 +52,31 @@ export const sidebarData: SidebarData = {
     },
   ],
   navGroups: [
+    {
+      title: 'Portal',
+      items: [
+        {
+          title: 'Profile',
+          url: '/profile',
+          icon: UserCog,
+        },
+        {
+          title: 'Bandwidth Monitoring',
+          url: '/bandwidth',
+          icon: Activity,
+        },
+        {
+          title: 'Billing',
+          url: '/billing',
+          icon: CreditCard,
+        },
+        {
+          title: 'Registration Status',
+          url: '/registration-status',
+          icon: CheckCircle2,
+        },
+      ],
+    },
     {
       title: 'General',
       items: [
@@ -167,11 +195,6 @@ export const sidebarData: SidebarData = {
           title: 'Settings',
           icon: Settings,
           items: [
-            {
-              title: 'Profile',
-              url: '/settings',
-              icon: UserCog,
-            },
             {
               title: 'Account',
               url: '/settings/account',
