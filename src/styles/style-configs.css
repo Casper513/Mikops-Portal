@@ -1,0 +1,48 @@
+/* Style Configurations */
+
+/* Vega - Classic style (default) */
+.style-vega {
+  --radius: 0.625rem;
+}
+
+/* Nova - Compact with reduced spacing */
+.style-nova {
+  --radius: 0.5rem;
+}
+
+/* Maia - Soft and rounded with generous spacing */
+.style-maia {
+  --radius: 1rem;
+}
+
+/* Lyra - Boxy and sharp */
+.style-lyra {
+  --radius: 0.25rem;
+}
+
+/* Mira - Compact and dense */
+.style-mira {
+  --radius: 0.375rem;
+}
+
+/* Radius Overrides */
+
+/* None */
+.radius-none {
+  --radius: 0;
+}
+
+/* Small */
+.radius-small {
+  --radius: 0.375rem;
+}
+
+/* Medium */
+.radius-medium {
+  --radius: 0.625rem;
+}
+
+/* Large */
+.radius-large {
+  --radius: 1rem;
+}

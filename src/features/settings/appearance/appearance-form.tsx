@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form'
 import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { fonts } from '@/config/fonts'
+import { styles, radii, baseColors, accentColors, styleDescriptions, radiusDescriptions } from '@/config/styles'
 import { showSubmittedData } from '@/lib/show-submitted-data'
 import { cn } from '@/lib/utils'
 import { useFont } from '@/context/font-provider'
 import { useTheme } from '@/context/theme-provider'
+import { useStyle } from '@/context/style-provider'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
   Form,
@@ -22,6 +24,10 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 const appearanceFormSchema = z.object({
   theme: z.enum(['light', 'dark']),
   font: z.enum(fonts),
+  style: z.enum(styles),
+  radius: z.enum(radii),
+  baseColor: z.enum(baseColors),
+  accentColor: z.enum(accentColors),
 })
 
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>
@@ -29,11 +35,16 @@ type AppearanceFormValues = z.infer<typeof appearanceFormSchema>
 export function AppearanceForm() {
   const { font, setFont } = useFont()
   const { theme, setTheme } = useTheme()
+  const { style, setStyle, radius, setRadius, baseColor, setBaseColor, accentColor, setAccentColor } = useStyle()
 
   // This can come from your database or API.
   const defaultValues: Partial<AppearanceFormValues> = {
     theme: theme as 'light' | 'dark',
     font,
+    style,
+    radius,
+    baseColor,
+    accentColor,
   }
 
   const form = useForm<AppearanceFormValues>({
@@ -44,6 +55,10 @@ export function AppearanceForm() {
   function onSubmit(data: AppearanceFormValues) {
     if (data.font != font) setFont(data.font)
     if (data.theme != theme) setTheme(data.theme)
+    if (data.style != style) setStyle(data.style)
+    if (data.radius != radius) setRadius(data.radius)
+    if (data.baseColor != baseColor) setBaseColor(data.baseColor)
+    if (data.accentColor != accentColor) setAccentColor(data.accentColor)
 
     showSubmittedData(data)
   }
@@ -150,6 +165,176 @@ export function AppearanceForm() {
                     </span>
                   </FormLabel>
                 </FormItem>
+              </RadioGroup>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='style'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Style</FormLabel>
+              <FormDescription>
+                Choose the overall visual style and spacing of the dashboard.
+              </FormDescription>
+              <FormMessage />
+              <RadioGroup
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                className='grid max-w-md gap-3 pt-2'
+              >
+                {styles.map((styleOption) => (
+                  <FormItem key={styleOption}>
+                    <FormLabel className='font-normal cursor-pointer flex items-center gap-3 rounded-lg border border-input p-3 hover:bg-accent'>
+                      <FormControl>
+                        <RadioGroupItem value={styleOption} className='sr-only' />
+                      </FormControl>
+                      <div className='flex-1'>
+                        <p className='font-medium capitalize'>{styleOption}</p>
+                        <p className='text-sm text-muted-foreground'>
+                          {styleDescriptions[styleOption]}
+                        </p>
+                      </div>
+                      {field.value === styleOption && (
+                        <div className='w-2 h-2 rounded-full bg-primary' />
+                      )}
+                    </FormLabel>
+                  </FormItem>
+                ))}
+              </RadioGroup>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='baseColor'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Base Color</FormLabel>
+              <FormDescription>
+                Select the base color scheme for the dashboard.
+              </FormDescription>
+              <FormMessage />
+              <RadioGroup
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                className='grid max-w-md grid-cols-2 gap-3 pt-2'
+              >
+                {baseColors.map((color) => (
+                  <FormItem key={color}>
+                    <FormLabel className='font-normal cursor-pointer flex items-center gap-2 rounded-lg border border-input p-3 hover:bg-accent'>
+                      <FormControl>
+                        <RadioGroupItem value={color} className='sr-only' />
+                      </FormControl>
+                      <div className={cn(
+                        'w-4 h-4 rounded-full',
+                        color === 'neutral' && 'bg-gray-400',
+                        color === 'stone' && 'bg-stone-400',
+                        color === 'zinc' && 'bg-zinc-400',
+                        color === 'gray' && 'bg-gray-500',
+                      )} />
+                      <span className='flex-1 capitalize'>{color}</span>
+                      {field.value === color && (
+                        <div className='w-2 h-2 rounded-full bg-primary' />
+                      )}
+                    </FormLabel>
+                  </FormItem>
+                ))}
+              </RadioGroup>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='accentColor'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Theme Accent</FormLabel>
+              <FormDescription>
+                Choose an accent color for interactive elements.
+              </FormDescription>
+              <FormMessage />
+              <RadioGroup
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                className='grid max-w-md grid-cols-2 gap-3 pt-2'
+              >
+                {accentColors.map((color) => (
+                  <FormItem key={color}>
+                    <FormLabel className='font-normal cursor-pointer flex items-center gap-2 rounded-lg border border-input p-3 hover:bg-accent'>
+                      <FormControl>
+                        <RadioGroupItem value={color} className='sr-only' />
+                      </FormControl>
+                      <div className={cn(
+                        'w-4 h-4 rounded-full',
+                        color === 'gray' && 'bg-gray-400',
+                        color === 'amber' && 'bg-amber-500',
+                        color === 'blue' && 'bg-blue-500',
+                        color === 'cyan' && 'bg-cyan-500',
+                        color === 'emerald' && 'bg-emerald-500',
+                        color === 'fuchsia' && 'bg-fuchsia-500',
+                        color === 'green' && 'bg-green-500',
+                        color === 'indigo' && 'bg-indigo-500',
+                        color === 'lime' && 'bg-lime-500',
+                        color === 'orange' && 'bg-orange-500',
+                        color === 'pink' && 'bg-pink-500',
+                        color === 'purple' && 'bg-purple-500',
+                        color === 'red' && 'bg-red-500',
+                        color === 'rose' && 'bg-rose-500',
+                        color === 'sky' && 'bg-sky-500',
+                        color === 'teal' && 'bg-teal-500',
+                        color === 'violet' && 'bg-violet-500',
+                        color === 'yellow' && 'bg-yellow-500',
+                      )} />
+                      <span className='flex-1 capitalize'>{color}</span>
+                      {field.value === color && (
+                        <div className='w-2 h-2 rounded-full bg-primary' />
+                      )}
+                    </FormLabel>
+                  </FormItem>
+                ))}
+              </RadioGroup>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='radius'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Border Radius</FormLabel>
+              <FormDescription>
+                Choose how rounded the corners of UI elements should be.
+              </FormDescription>
+              <FormMessage />
+              <RadioGroup
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                className='grid max-w-md gap-3 pt-2'
+              >
+                {radii.map((radiusOption) => (
+                  <FormItem key={radiusOption}>
+                    <FormLabel className='font-normal cursor-pointer flex items-center gap-3 rounded-lg border border-input p-3 hover:bg-accent'>
+                      <FormControl>
+                        <RadioGroupItem value={radiusOption} className='sr-only' />
+                      </FormControl>
+                      <div className='flex-1'>
+                        <p className='font-medium capitalize'>{radiusOption}</p>
+                        <p className='text-sm text-muted-foreground'>
+                          {radiusDescriptions[radiusOption]}
+                        </p>
+                      </div>
+                      {field.value === radiusOption && (
+                        <div className='w-2 h-2 rounded-full bg-primary' />
+                      )}
+                    </FormLabel>
+                  </FormItem>
+                ))}
               </RadioGroup>
             </FormItem>
           )}
