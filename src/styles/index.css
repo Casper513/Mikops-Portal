@@ -1,9 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import './theme.css';
-@import './style-configs.css';
-@import './base-colors.css';
-@import './accent-colors.css';
+@import './appearance.css';
 
 @custom-variant dark (&:is(.dark *));
 

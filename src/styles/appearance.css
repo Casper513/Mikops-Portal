@@ -1,0 +1,177 @@
+/* Base Color Schemes - defines the primary color palette */
+.base-neutral:root {
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+.base-stone:root {
+  --primary: oklch(0.345 0.024 260);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+.base-zinc:root {
+  --primary: oklch(0.334 0.031 260.902);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+.base-gray:root {
+  --primary: oklch(0.376 0.034 258.338);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+}
+
+/* Accent Color Schemes - defines the accent/brand colors */
+.accent-gray:root {
+  --accent: oklch(0.385 0.033 259.696);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+}
+
+.accent-amber:root {
+  --accent: oklch(0.772 0.196 85.995);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-blue:root {
+  --accent: oklch(0.54 0.218 265.755);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+}
+
+.accent-cyan:root {
+  --accent: oklch(0.572 0.241 214.216);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-emerald:root {
+  --accent: oklch(0.627 0.194 154.363);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-fuchsia:root {
+  --accent: oklch(0.667 0.275 308.949);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-green:root {
+  --accent: oklch(0.664 0.259 131.684);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-indigo:root {
+  --accent: oklch(0.545 0.22 283.011);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+}
+
+.accent-lime:root {
+  --accent: oklch(0.787 0.202 110.612);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-orange:root {
+  --accent: oklch(0.696 0.228 41.116);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-pink:root {
+  --accent: oklch(0.688 0.248 348.514);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-purple:root {
+  --accent: oklch(0.613 0.282 293.756);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+}
+
+.accent-red:root {
+  --accent: oklch(0.637 0.237 25.331);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+}
+
+.accent-rose:root {
+  --accent: oklch(0.677 0.222 16.439);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-sky:root {
+  --accent: oklch(0.687 0.201 230.604);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-teal:root {
+  --accent: oklch(0.626 0.216 188.304);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+.accent-violet:root {
+  --accent: oklch(0.593 0.283 300.92);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+}
+
+.accent-yellow:root {
+  --accent: oklch(0.84 0.204 94.870);
+  --accent-foreground: oklch(0.129 0.042 264.695);
+}
+
+/* Style Spacing & Sizing Configs */
+.style-vega:root {
+  --radius: 0.5rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+}
+
+.style-nova:root {
+  --radius: 0.375rem;
+  --spacing-xs: 0.125rem;
+  --spacing-sm: 0.375rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1.125rem;
+}
+
+.style-maia:root {
+  --radius: 0.75rem;
+  --spacing-xs: 0.375rem;
+  --spacing-sm: 0.625rem;
+  --spacing-md: 1.25rem;
+  --spacing-lg: 1.875rem;
+}
+
+.style-lyra:root {
+  --radius: 0.25rem;
+  --spacing-xs: 0.125rem;
+  --spacing-sm: 0.375rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1rem;
+}
+
+.style-mira:root {
+  --radius: 0.5rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+}
+
+/* Border Radius Overrides */
+.radius-none:root {
+  --radius: 0;
+}
+
+.radius-small:root {
+  --radius: 0.375rem;
+}
+
+.radius-medium:root {
+  --radius: 0.625rem;
+}
+
+.radius-large:root {
+  --radius: 0.875rem;
+}
+
+/* Update sidebar colors based on accent */
+:root {
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+}

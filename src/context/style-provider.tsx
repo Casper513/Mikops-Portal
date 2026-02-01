@@ -56,30 +56,16 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const root = document.documentElement
     
-    // Apply style class
-    root.classList.forEach((cls) => {
-      if (cls.startsWith('style-')) root.classList.remove(cls)
-    })
+    // Remove all style-related classes
+    const classesToRemove = Array.from(root.classList).filter(
+      (cls) => cls.startsWith('style-') || cls.startsWith('radius-') || cls.startsWith('base-') || cls.startsWith('accent-')
+    )
+    classesToRemove.forEach((cls) => root.classList.remove(cls))
+
+    // Apply new classes
     root.classList.add(`style-${style}`)
-
-    // Apply radius class
-    root.classList.forEach((cls) => {
-      if (cls.startsWith('radius-')) root.classList.remove(cls)
-    })
-    if (radius !== 'default') {
-      root.classList.add(`radius-${radius}`)
-    }
-
-    // Apply base color class
-    root.classList.forEach((cls) => {
-      if (cls.startsWith('base-')) root.classList.remove(cls)
-    })
+    root.classList.add(`radius-${radius}`)
     root.classList.add(`base-${baseColor}`)
-
-    // Apply accent color class
-    root.classList.forEach((cls) => {
-      if (cls.startsWith('accent-')) root.classList.remove(cls)
-    })
     root.classList.add(`accent-${accentColor}`)
   }, [style, radius, baseColor, accentColor])
 

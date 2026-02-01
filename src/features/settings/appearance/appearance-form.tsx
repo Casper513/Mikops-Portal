@@ -20,6 +20,13 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const appearanceFormSchema = z.object({
   theme: z.enum(['light', 'dark']),
@@ -61,6 +68,26 @@ export function AppearanceForm() {
     if (data.accentColor != accentColor) setAccentColor(data.accentColor)
 
     showSubmittedData(data)
+  }
+
+  const handleStyleChange = (value: string) => {
+    setStyle(value as typeof style)
+    form.setValue('style', value as typeof style)
+  }
+
+  const handleRadiusChange = (value: string) => {
+    setRadius(value as typeof radius)
+    form.setValue('radius', value as typeof radius)
+  }
+
+  const handleBaseColorChange = (value: string) => {
+    setBaseColor(value as typeof baseColor)
+    form.setValue('baseColor', value as typeof baseColor)
+  }
+
+  const handleAccentColorChange = (value: string) => {
+    setAccentColor(value as typeof accentColor)
+    form.setValue('accentColor', value as typeof accentColor)
   }
 
   return (
@@ -179,31 +206,26 @@ export function AppearanceForm() {
               <FormDescription>
                 Choose the overall visual style and spacing of the dashboard.
               </FormDescription>
-              <FormMessage />
-              <RadioGroup
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                className='grid max-w-md gap-3 pt-2'
-              >
-                {styles.map((styleOption) => (
-                  <FormItem key={styleOption}>
-                    <FormLabel className='font-normal cursor-pointer flex items-center gap-3 rounded-lg border border-input p-3 hover:bg-accent'>
-                      <FormControl>
-                        <RadioGroupItem value={styleOption} className='sr-only' />
-                      </FormControl>
-                      <div className='flex-1'>
-                        <p className='font-medium capitalize'>{styleOption}</p>
-                        <p className='text-sm text-muted-foreground'>
+              <Select onValueChange={handleStyleChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select a style' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {styles.map((styleOption) => (
+                    <SelectItem key={styleOption} value={styleOption}>
+                      <div className='flex items-center gap-2'>
+                        <span className='capitalize'>{styleOption}</span>
+                        <span className='text-xs text-muted-foreground'>
                           {styleDescriptions[styleOption]}
-                        </p>
+                        </span>
                       </div>
-                      {field.value === styleOption && (
-                        <div className='w-2 h-2 rounded-full bg-primary' />
-                      )}
-                    </FormLabel>
-                  </FormItem>
-                ))}
-              </RadioGroup>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -217,33 +239,30 @@ export function AppearanceForm() {
               <FormDescription>
                 Select the base color scheme for the dashboard.
               </FormDescription>
+              <Select onValueChange={handleBaseColorChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select a base color' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {baseColors.map((color) => (
+                    <SelectItem key={color} value={color}>
+                      <div className='flex items-center gap-2'>
+                        <div className={cn(
+                          'w-3 h-3 rounded-full',
+                          color === 'neutral' && 'bg-gray-400',
+                          color === 'stone' && 'bg-stone-400',
+                          color === 'zinc' && 'bg-zinc-400',
+                          color === 'gray' && 'bg-gray-500',
+                        )} />
+                        <span className='capitalize'>{color}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
-              <RadioGroup
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                className='grid max-w-md grid-cols-2 gap-3 pt-2'
-              >
-                {baseColors.map((color) => (
-                  <FormItem key={color}>
-                    <FormLabel className='font-normal cursor-pointer flex items-center gap-2 rounded-lg border border-input p-3 hover:bg-accent'>
-                      <FormControl>
-                        <RadioGroupItem value={color} className='sr-only' />
-                      </FormControl>
-                      <div className={cn(
-                        'w-4 h-4 rounded-full',
-                        color === 'neutral' && 'bg-gray-400',
-                        color === 'stone' && 'bg-stone-400',
-                        color === 'zinc' && 'bg-zinc-400',
-                        color === 'gray' && 'bg-gray-500',
-                      )} />
-                      <span className='flex-1 capitalize'>{color}</span>
-                      {field.value === color && (
-                        <div className='w-2 h-2 rounded-full bg-primary' />
-                      )}
-                    </FormLabel>
-                  </FormItem>
-                ))}
-              </RadioGroup>
             </FormItem>
           )}
         />
@@ -257,47 +276,44 @@ export function AppearanceForm() {
               <FormDescription>
                 Choose an accent color for interactive elements.
               </FormDescription>
+              <Select onValueChange={handleAccentColorChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select an accent color' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {accentColors.map((color) => (
+                    <SelectItem key={color} value={color}>
+                      <div className='flex items-center gap-2'>
+                        <div className={cn(
+                          'w-3 h-3 rounded-full',
+                          color === 'gray' && 'bg-gray-400',
+                          color === 'amber' && 'bg-amber-500',
+                          color === 'blue' && 'bg-blue-500',
+                          color === 'cyan' && 'bg-cyan-500',
+                          color === 'emerald' && 'bg-emerald-500',
+                          color === 'fuchsia' && 'bg-fuchsia-500',
+                          color === 'green' && 'bg-green-500',
+                          color === 'indigo' && 'bg-indigo-500',
+                          color === 'lime' && 'bg-lime-500',
+                          color === 'orange' && 'bg-orange-500',
+                          color === 'pink' && 'bg-pink-500',
+                          color === 'purple' && 'bg-purple-500',
+                          color === 'red' && 'bg-red-500',
+                          color === 'rose' && 'bg-rose-500',
+                          color === 'sky' && 'bg-sky-500',
+                          color === 'teal' && 'bg-teal-500',
+                          color === 'violet' && 'bg-violet-500',
+                          color === 'yellow' && 'bg-yellow-500',
+                        )} />
+                        <span className='capitalize'>{color}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
-              <RadioGroup
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                className='grid max-w-md grid-cols-2 gap-3 pt-2'
-              >
-                {accentColors.map((color) => (
-                  <FormItem key={color}>
-                    <FormLabel className='font-normal cursor-pointer flex items-center gap-2 rounded-lg border border-input p-3 hover:bg-accent'>
-                      <FormControl>
-                        <RadioGroupItem value={color} className='sr-only' />
-                      </FormControl>
-                      <div className={cn(
-                        'w-4 h-4 rounded-full',
-                        color === 'gray' && 'bg-gray-400',
-                        color === 'amber' && 'bg-amber-500',
-                        color === 'blue' && 'bg-blue-500',
-                        color === 'cyan' && 'bg-cyan-500',
-                        color === 'emerald' && 'bg-emerald-500',
-                        color === 'fuchsia' && 'bg-fuchsia-500',
-                        color === 'green' && 'bg-green-500',
-                        color === 'indigo' && 'bg-indigo-500',
-                        color === 'lime' && 'bg-lime-500',
-                        color === 'orange' && 'bg-orange-500',
-                        color === 'pink' && 'bg-pink-500',
-                        color === 'purple' && 'bg-purple-500',
-                        color === 'red' && 'bg-red-500',
-                        color === 'rose' && 'bg-rose-500',
-                        color === 'sky' && 'bg-sky-500',
-                        color === 'teal' && 'bg-teal-500',
-                        color === 'violet' && 'bg-violet-500',
-                        color === 'yellow' && 'bg-yellow-500',
-                      )} />
-                      <span className='flex-1 capitalize'>{color}</span>
-                      {field.value === color && (
-                        <div className='w-2 h-2 rounded-full bg-primary' />
-                      )}
-                    </FormLabel>
-                  </FormItem>
-                ))}
-              </RadioGroup>
             </FormItem>
           )}
         />
@@ -311,31 +327,26 @@ export function AppearanceForm() {
               <FormDescription>
                 Choose how rounded the corners of UI elements should be.
               </FormDescription>
-              <FormMessage />
-              <RadioGroup
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                className='grid max-w-md gap-3 pt-2'
-              >
-                {radii.map((radiusOption) => (
-                  <FormItem key={radiusOption}>
-                    <FormLabel className='font-normal cursor-pointer flex items-center gap-3 rounded-lg border border-input p-3 hover:bg-accent'>
-                      <FormControl>
-                        <RadioGroupItem value={radiusOption} className='sr-only' />
-                      </FormControl>
-                      <div className='flex-1'>
-                        <p className='font-medium capitalize'>{radiusOption}</p>
-                        <p className='text-sm text-muted-foreground'>
+              <Select onValueChange={handleRadiusChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select border radius' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {radii.map((radiusOption) => (
+                    <SelectItem key={radiusOption} value={radiusOption}>
+                      <div className='flex items-center gap-2'>
+                        <span className='capitalize'>{radiusOption}</span>
+                        <span className='text-xs text-muted-foreground'>
                           {radiusDescriptions[radiusOption]}
-                        </p>
+                        </span>
                       </div>
-                      {field.value === radiusOption && (
-                        <div className='w-2 h-2 rounded-full bg-primary' />
-                      )}
-                    </FormLabel>
-                  </FormItem>
-                ))}
-              </RadioGroup>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
             </FormItem>
           )}
         />
